@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://social:social@socialnetwork.dnhqk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://social:social@socialnetwork.dnhqk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "secretToken": "mysecrettoken1284%67r8232"
 }
