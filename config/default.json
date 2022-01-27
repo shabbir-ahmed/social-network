@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://social:social@socialnetwork.dnhqk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "secretToken": "mysecrettoken1284%67r8232"
+    "secretToken": "mysecrettoken1284%67r8232",
+    "githubCleantId": "Iv1.cbfb371d48346e91",
+    "githubSecret": "a0bbee568c496f678af3738cddeda4e309d502d8"
 }
