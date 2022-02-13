@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
 
 const INTIAL_STATE = {
 	name: "",
@@ -8,7 +10,7 @@ const INTIAL_STATE = {
 	confirmPassword: "",
 };
 
-const Register = () => {
+const Register = ({ setAlert }) => {
 	const [formData, setFormData] = useState(INTIAL_STATE);
 
 	const { name, email, password, confirmPassword } = formData;
@@ -21,7 +23,7 @@ const Register = () => {
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		if (password !== confirmPassword) {
-			console.log("Password doesn't match");
+			setAlert("Password doesn't match", "danger");
 		} else {
 			console.log("success");
 		}
@@ -93,4 +95,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default connect(null, { setAlert })(Register);
