@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 
 const INTIAL_STATE = {
 	name: "",
@@ -10,7 +11,7 @@ const INTIAL_STATE = {
 	confirmPassword: "",
 };
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
 	const [formData, setFormData] = useState(INTIAL_STATE);
 
 	const { name, email, password, confirmPassword } = formData;
@@ -25,7 +26,7 @@ const Register = ({ setAlert }) => {
 		if (password !== confirmPassword) {
 			setAlert("Password doesn't match", "danger");
 		} else {
-			console.log("success");
+			register({ name, email, password });
 		}
 	};
 
@@ -43,7 +44,6 @@ const Register = ({ setAlert }) => {
 						name="name"
 						value={name}
 						onChange={(e) => formHandling(e)}
-						required
 					/>
 				</div>
 				<div className="form-group">
@@ -53,7 +53,6 @@ const Register = ({ setAlert }) => {
 						name="email"
 						value={email}
 						onChange={(e) => formHandling(e)}
-						required
 					/>
 					<small className="form-text">
 						This site uses Gravatar so if you want a profile image,
@@ -65,10 +64,8 @@ const Register = ({ setAlert }) => {
 						type="password"
 						placeholder="Password"
 						name="password"
-						minLength="6"
 						value={password}
 						onChange={(e) => formHandling(e)}
-						required
 					/>
 				</div>
 				<div className="form-group">
@@ -76,10 +73,8 @@ const Register = ({ setAlert }) => {
 						type="password"
 						placeholder="Confirm Password"
 						name="confirmPassword"
-						minLength="6"
 						value={confirmPassword}
 						onChange={(e) => formHandling(e)}
-						required
 					/>
 				</div>
 				<input
@@ -95,4 +90,4 @@ const Register = ({ setAlert }) => {
 	);
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
