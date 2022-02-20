@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
 
 const INTIAL_STATE = {
 	name: "",
@@ -8,7 +10,7 @@ const INTIAL_STATE = {
 	confirmPassword: "",
 };
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState(INTIAL_STATE);
 
 	const { email, password } = formData;
@@ -21,12 +23,15 @@ const Login = () => {
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
-		console.log("success");
+		login(email, password);
 	};
+
+	if (isAuthenticated) {
+		return <Navigate to="/dashboard" />;
+	}
 
 	return (
 		<section className="container">
-			<div className="alert alert-danger">Invalid credentials</div>
 			<h1 className="large text-primary">Sign In</h1>
 			<p className="lead">
 				<i className="fas fa-user"></i> Sign into Your Account
@@ -64,4 +69,8 @@ const Login = () => {
 	);
 };
 
-export default Login;
+const mapToState = (state) => ({
+	isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapToState, { login })(Login);
