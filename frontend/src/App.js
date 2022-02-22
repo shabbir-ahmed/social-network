@@ -7,6 +7,8 @@ import Login from "./components/auth/Login";
 import Alert from "./components/layout/Alert";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./routing/PrivateRoute";
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -31,6 +33,15 @@ const App = () => {
 					<Route exact path="/" element={<Landing />} />
 					<Route exact path="/register" element={<Register />} />
 					<Route exact path="/login" element={<Login />} />
+					<Route
+						exact
+						path="/dashboard"
+						element={
+							<PrivateRoute>
+								<Dashboard />
+							</PrivateRoute>
+						}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</Provider>
