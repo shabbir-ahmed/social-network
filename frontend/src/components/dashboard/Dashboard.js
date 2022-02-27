@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCurrentUserProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
+import DashboardActions from "./DashboardActions";
 
 const Dashboard = ({
 	getCurrentUserProfile,
@@ -25,7 +26,9 @@ const Dashboard = ({
 					</p>
 
 					{profile !== null ? (
-						"Yes"
+						<>
+							<DashboardActions />
+						</>
 					) : (
 						<>
 							<p>
